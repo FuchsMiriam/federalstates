@@ -81,38 +81,78 @@ let federalStates = [
   },
 ];
 
+let buttons = ["B", "H", "M", "N", "R", "S", "T"];
 
-  function show() {
-    const stateContainer = document.getElementById('state');
-    stateContainer.innerHTML = '';
-  
-    for (let i = 0; i < federalStates.length; i++) {
-      let state = federalStates[i];
-      let stateDiv = createStateDiv(state);
-      stateContainer.appendChild(stateDiv);
-    }
+function show() {
+  const stateContainer = document.getElementById("state");
+  stateContainer.innerHTML = ``;
+
+  for (let i = 0; i < federalStates.length; i++) {
+    let state = federalStates[i];
+    let stateDiv = createStateDiv(state);
+    stateContainer.appendChild(stateDiv);
   }
+}
 
-  function createStateDiv(state) {
-    let stateDiv = /*html*/ document.createElement('div');
-    stateDiv.classList.add('outerContainer');
-    
-    stateDiv.innerHTML = `
+function createStateDiv(state) {
+  let stateDiv = /*html*/ document.createElement("div");
+  stateDiv.classList.add("outerContainer");
+
+  stateDiv.innerHTML = `
       <div class="stateContainer" onclick = "forwarding('${state.url}')">
         <span class="stateName">${state.name}</span>
         <span class="population">${state.population}</span>
       </div>
     `;
-    
-    return stateDiv; 
-  }
-  function forwarding(url){
-    window.open(url, '_blank');
-  }
 
+  return stateDiv;
+}
+function forwarding(url) {
+  window.open(url, "_blank");
+}
+
+show();
+
+function showButtons() {
+  const buttonContainer = document.getElementById("button");
+  buttonContainer.innerHTML = ``;
+
+  for (let i = 0; i < buttons.length; i++) {
+    let buttonText = buttons[i];
+    let buttonDiv = createButton(buttonText);
+    buttonContainer.appendChild(buttonDiv);
+  }
+}
+
+function createButton(buttonText) {
+  let buttonDiv = document.createElement("button");
+  buttonDiv.classList.add("buttonStyle");
+  buttonDiv.textContent = buttonText;
+
+  buttonDiv.addEventListener("click", function () {
+    filterStates(buttonText);
+  });
+
+  return buttonDiv;
+}
+
+function filterStates(buttonText) {
+  const filteredStates = federalStates.filter((state) =>
+    state.name.startsWith(buttonText)
+  );
+
+  const stateContainer = document.getElementById("state");
+  stateContainer.innerHTML = ``;
+
+  for (let i = 0; i < filteredStates.length; i++) {
+    let state = filteredStates[i];
+    let stateDiv = createStateDiv(state);
+    stateContainer.appendChild(stateDiv);
+  }
+}
+
+showButtons();
+
+function reset(){
   show();
-
-
-
-
-
+}

@@ -10,6 +10,7 @@ body {
 .content {
   max-width: 1024px;
   margin: 5px;
+  min-width: 1024px;
 }
 
 .headlineContainer {
@@ -48,4 +49,40 @@ h1 {
 
 .population {
   color: grey;
+}
+
+.buttonStyle {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.buttonStyle:hover {
+  font-weight: bold;
+}
+
+.resetButton {
+  width: auto;
+  height: 30px;
+  font-size: 14px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  font-weight: bold;
+}
+
+@media (min-width: 800px) and (max-width: 1030px) {
+ 
+  }
+
+
+@media (max-width: 800px) {
+
+}
+
+@media (max-width: 500px) {
+ 
 }
